@@ -7,10 +7,13 @@ import { io, Socket } from 'socket.io-client'
 })
 export class ChatService {
   private socket: Socket;
-  private url = 'http://localhost:3000';
+  // private url = 'http://localhost:3000';
+  private url = 'https://ng-chatroom-backend.onrender.com';
 
   constructor() {
-    this.socket = io(this.url, { transports: [ 'websocket', 'pulling', 'flashsocket' ]});
+    this.socket = io(this.url, {
+      transports: ['websocket', 'pulling', 'flashsocket'],
+    });
   }
 
   joinRoom(data: any): void {
@@ -21,28 +24,28 @@ export class ChatService {
     this.socket.emit('message', data);
   }
 
-  getMessage(): Observable<any>{
-    return new Observable<{ user: string, message: string }>(observer => {
+  getMessage(): Observable<any> {
+    return new Observable<{ user: string; message: string }>((observer) => {
       this.socket.on('new message', (data) => {
-        observer.next(data)
-      })
+        observer.next(data);
+      });
 
       return () => {
-        this.socket.disconnect()
-      }
-    })
+        this.socket.disconnect();
+      };
+    });
   }
 
-  getStorage(){
-    const storage: string = localStorage.getItem('chats')
-    return storage ? JSON.parse(storage) : []
+  getStorage() {
+    const storage: string = localStorage.getItem('chats');
+    return storage ? JSON.parse(storage) : [];
   }
 
-  setStorage(data){
-    localStorage.setItem('chats', JSON.stringify(data))
+  setStorage(data) {
+    localStorage.setItem('chats', JSON.stringify(data));
   }
 
-  deleteStorage(){
-    localStorage.removeItem('chats')
+  deleteStorage() {
+    localStorage.removeItem('chats');
   }
 }
