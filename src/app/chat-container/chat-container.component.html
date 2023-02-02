@@ -1,0 +1,28 @@
+<div class="chat-container">
+    <ng-container *ngIf="selectedUser">
+        <div class="chat-header">
+            <img [src]="selectedUser?.image" [alt]="selectedUser?.name" class="avatar" />
+            <p class="username">{{ selectedUser?.name }}</p>
+        </div>
+        <div class="chat-body">
+            <div *ngFor="let item of messageArray" [ngClass]="item?.user === currentUser.name && 'same-user'">
+                <p class="message-container">{{ item?.message }}</p>
+            </div>
+        </div>
+        <div class="chat-footer">
+            <!-- <div class="row"> -->
+                <div class="flex-grow-1">
+                    <div class="form-group mb-0 me-3">
+                        <input type="text" placeholder="Type a message" class="form-control" [(ngModel)]="messageText"
+                            (keyup)="$event.keyCode === 13 && sendMessage()" />
+                    </div>
+                </div>
+                <div class="text-center align-self-center" style="width: 80px">
+                    <button class="btn-primary btn btn-sm px-3 w-100" (click)="sendMessage()">
+                        Send
+                    </button>
+                </div>
+            <!-- </div> -->
+        </div>
+    </ng-container>
+</div>

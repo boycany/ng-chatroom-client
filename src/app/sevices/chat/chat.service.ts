@@ -21,7 +21,7 @@ export class ChatService {
     this.socket.emit('message', data);
   }
 
-  getMessage():Observable<any>{
+  getMessage(): Observable<any>{
     return new Observable<{ user: string, message: string }>(observer => {
       this.socket.on('new message', (data) => {
         observer.next(data)
@@ -40,5 +40,9 @@ export class ChatService {
 
   setStorage(data){
     localStorage.setItem('chats', JSON.stringify(data))
+  }
+
+  deleteStorage(){
+    localStorage.removeItem('chats')
   }
 }
