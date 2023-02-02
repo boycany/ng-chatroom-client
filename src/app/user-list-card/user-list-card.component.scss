@@ -1,38 +1,62 @@
-.user-list-card{
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
-    height: calc(100vh - 100px);
+.user-list-card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  height: calc(100vh - 100px);
+  padding: 10px;
+
+  .user-card {
+    display: flex;
     padding: 10px;
+    cursor: pointer;
 
-    .user-card{
-        display: flex;
-        padding: 10px;
-        cursor: pointer;
-
-        &.active{
-            background-color: #EDEDED;
-        }
-
-        .avatar{
-            height: 50px;
-            width: 50px;
-            border-radius: 50%;
-            overflow: hidden;
-            margin: 0 15px 0 0;
-        }
-
-        .username{
-            font-size: 20px;
-            font-weight: 500;
-            margin-bottom: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+    &.active {
+      background-color: #ededed;
+      border-radius: 10px;
     }
 
-    .user-card:not(:last-child){
-        border-bottom: 1px solid #bbbbbb;
+    .avatar {
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 15px 0 0;
     }
+
+    .username {
+      font-size: 20px;
+      font-weight: 500;
+      margin-bottom: 0;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  .user-card:not(:last-child) {
+    border-bottom: 1px solid #bbbbbb;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .user-list-card {
+    max-height: 80px;
+    padding: 3px;
+    overflow: scroll;
+
+    .user-card {
+      height: 70px;
+      justify-content: center;
+      align-items: center;
+      margin-top: auto;
+      margin-bottom: auto;
+
+      .avatar {
+        margin: 0 auto;
+      }
+    }
+
+    .user-card:not(:last-child) {
+      border-bottom: none;
+    }
+  }
 }

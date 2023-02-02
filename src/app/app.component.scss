@@ -1,5 +1,12 @@
-.container-md{
-    padding-top: 50px;
-    padding-bottom: 50px;
-    overflow: hidden;
+.container-md {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 767px) {
+  .container-md {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
 }
